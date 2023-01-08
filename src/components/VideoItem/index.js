@@ -1,0 +1,59 @@
+import {Link} from 'react-router-dom'
+
+import {Component} from 'react'
+
+import {formatDistanceToNow} from 'date-fns'
+
+// import {formatDistance} from 'date-fns'
+
+import NxtContext from '../../context/NxtContext'
+import {Paragraph, VideoListContainer, ThumbImage} from './styleComponents'
+import {Profile} from '../Header/styleComponents'
+import {RowJust} from '../Home/styleComponents'
+
+class VideoItem extends Component {
+  render() {
+    const {videoItem} = this.props
+    const {
+      id,
+      title,
+      thumbNailUrl,
+      publishedAt,
+      name,
+      profileImageUrl,
+      viewCount,
+    } = videoItem
+
+    const dateAgo = formatDistanceToNow(new Date(publishedAt))
+
+    return (
+      <NxtContext.Consumer>
+        {value => {
+          const {isDark} = value
+
+          return (
+            <Link to={`/videos/${id}`} style={{textDecoration: 'none'}}>
+              <VideoListContainer>
+                <div>
+                  <ThumbImage src={thumbNailUrl} alt="thumbnail url" />
+                  <div>
+                    <Profile src={profileImageUrl} alt="profile" />
+                    <div>
+                      <Paragraph isDark={isDark}>{title}</Paragraph>
+                      <Paragraph isDark={isDark}>{name}</Paragraph>
+                      <RowJust className="row">
+                        <Paragraph isDark={isDark}>{viewCount} views</Paragraph>
+                        <Paragraph isDark={isDark}>. {dateAgo} ago</Paragraph>
+                      </RowJust>
+                    </div>
+                  </div>
+                </div>
+              </VideoListContainer>
+            </Link>
+          )
+        }}
+      </NxtContext.Consumer>
+    )
+  }
+}
+export default VideoItem
