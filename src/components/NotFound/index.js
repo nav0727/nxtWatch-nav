@@ -1,30 +1,52 @@
 import {Component} from 'react'
 import Header from '../Header'
 import LeftNav from '../LeftNavbar'
+import {
+  BodyContainer,
+  RowContainer,
+  HomeContainer,
+} from '../Home/styleComponents'
+import NxtContext from '../../context/NxtContext'
+import {NotFoundContainer, NotImg, HeadingNot} from './styleComponents'
+import {Paragraph} from '../LeftNavbar/styleComponents'
 
 class NotFound extends Component {
   render() {
     return (
-      <div className="Home-container">
-        <Header />
-        <div className="body-container">
-          <div>
-            <LeftNav />
-          </div>
-          <div className="body">
-            <div className="not-found-container">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
-                alt="not found"
-                className="not-found-image"
-              />
+      <NxtContext.Consumer>
+        {value => {
+          const {isDark} = value
 
-              <h1>Page Not Found</h1>
-              <p>We are sorry, the page you requested could not be found.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+          return (
+            <HomeContainer>
+              <Header toggleTheme={this.toggleTheme} />
+              <RowContainer>
+                <div>
+                  <LeftNav />
+                </div>
+
+                <BodyContainer isDark={isDark}>
+                  <NotFoundContainer isDark={isDark}>
+                    <NotImg
+                      src={
+                        isDark
+                          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png'
+                          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png'
+                      }
+                      alt="not found"
+                    />
+
+                    <HeadingNot isDark={isDark}>Page Not Found</HeadingNot>
+                    <Paragraph isDark={isDark}>
+                      We are sorry, the page you requested could not be found.
+                    </Paragraph>
+                  </NotFoundContainer>
+                </BodyContainer>
+              </RowContainer>
+            </HomeContainer>
+          )
+        }}
+      </NxtContext.Consumer>
     )
   }
 }

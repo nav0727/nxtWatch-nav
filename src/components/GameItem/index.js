@@ -23,7 +23,7 @@ const GameItem = props => {
                   className="thumb-img"
                 />
                 <Paragraph isDark={isDark}>{title}</Paragraph>
-                <Paragraph>{viewCount} views</Paragraph>
+                <Paragraph isDark={isDark}>{viewCount} views</Paragraph>
               </div>
             </GameListItem>
           </Link>

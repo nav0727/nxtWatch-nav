@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: ${props => (props.isDark ? '#f0f0f0' : '#181818')};
+  background-color: ${props => (props.isDark ? '#f9f9f9' : '#181818')};
 
   background-color: ${props => (props.isDark ? '#181818' : '#f0f0f0')};
 `

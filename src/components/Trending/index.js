@@ -14,7 +14,8 @@ import TrendingItem from '../TrendingItem'
 import NxtContext from '../../context/NxtContext'
 import {TrendingContainer, TrendingBody} from './styleComponents'
 
-import {Game, GamingHead} from '../Gaming/styledComponents'
+import {Game, GamingHead, Circle} from '../Gaming/styledComponents'
+import {BodyContainer, RowContainer} from '../Home/styleComponents'
 
 const apiConstants = {
   initial: 'INITIAL',
@@ -24,7 +25,7 @@ const apiConstants = {
 }
 
 class Trending extends Component {
-  state = {trendingList: [], apiStatus: apiConstants.initial}
+  state = {trendingList: [], apiStatus: apiConstants.inProgress}
 
   componentDidMount() {
     this.getVideos()
@@ -101,26 +102,22 @@ class Trending extends Component {
           const {isDark} = value
 
           return (
-            <TrendingContainer isDark={isDark}>
+            <TrendingContainer isDark={isDark} data-testid="trending">
               <Header />
-              <div className="body-container">
-                <div>
-                  <LeftNav />
-                </div>
-                <div className="tre">
-                  <div className="col-dir">
-                    <Game isDark={isDark}>
-                      <div className="bg-dark">
-                        <HiFire />
-                      </div>
-                      <GamingHead isDark={isDark}>Trending</GamingHead>
-                    </Game>
-                    <TrendingBody isDark={isDark} className="body">
-                      {this.renderTrend()}
-                    </TrendingBody>
-                  </div>
-                </div>
-              </div>
+              <RowContainer>
+                <LeftNav />
+                <BodyContainer>
+                  <Game isDark={isDark}>
+                    <Circle>
+                      <HiFire />
+                    </Circle>
+                    <GamingHead isDark={isDark}>Trending</GamingHead>
+                  </Game>
+                  <TrendingBody isDark={isDark} className="body">
+                    {this.renderTrend()}
+                  </TrendingBody>
+                </BodyContainer>
+              </RowContainer>
             </TrendingContainer>
           )
         }}

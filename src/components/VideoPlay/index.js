@@ -6,6 +6,11 @@ import Cookies from 'js-cookie'
 import VideoPlayItem from '../VideoPlayItem'
 import Header from '../Header'
 import LeftNav from '../LeftNavbar'
+import {
+  HomeContainer,
+  RowContainer,
+  BodyContainer,
+} from '../Home/styleComponents'
 
 class VideoPlay extends Component {
   state = {videoPlayList: []}
@@ -58,18 +63,17 @@ class VideoPlay extends Component {
     const {videoPlayList} = this.state
     // console.log(videoPlayList)
     return (
-      <div className="Home-container">
+      <HomeContainer>
         <Header />
-        <div className="body-container">
-          <div>
-            <LeftNav />
-          </div>
 
-          <div className="body">
+        <RowContainer>
+          <LeftNav />
+
+          <BodyContainer>
             <VideoPlayItem videoItem={videoPlayList} />
-          </div>
-        </div>
-      </div>
+          </BodyContainer>
+        </RowContainer>
+      </HomeContainer>
     )
   }
 }

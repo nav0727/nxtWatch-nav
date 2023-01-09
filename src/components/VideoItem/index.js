@@ -35,9 +35,9 @@ class VideoItem extends Component {
             <Link to={`/videos/${id}`} style={{textDecoration: 'none'}}>
               <VideoListContainer>
                 <div>
-                  <ThumbImage src={thumbNailUrl} alt="thumbnail url" />
+                  <ThumbImage src={thumbNailUrl} alt="video thumbnail" />
                   <div>
-                    <Profile src={profileImageUrl} alt="profile" />
+                    <Profile src={profileImageUrl} alt="channel logo" />
                     <div>
                       <Paragraph isDark={isDark}>{title}</Paragraph>
                       <Paragraph isDark={isDark}>{name}</Paragraph>

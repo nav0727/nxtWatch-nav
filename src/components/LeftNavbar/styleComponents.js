@@ -15,7 +15,7 @@ export const LeftNavContainer = styled.nav`
 `
 
 export const Paragraph = styled.p`
-  color: ${props => (props.isDark ? '#020202' : '#f9f9f9')};
+  color: ${props => (props.isDark ? '#181818' : '#fff')};
   padding: 0px;
   font-family: 'Roboto';
   margin: 0;

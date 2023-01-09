@@ -13,15 +13,9 @@ import GameItem from '../GameItem'
 
 import NxtContext from '../../context/NxtContext'
 
-import {
-  GamingHead,
-  Game,
-  GamingBody,
-  IconContainer,
-  GameContainer,
-  UlContainer,
-  ColumDiv,
-} from './styledComponents'
+import {UlContainer, Game, Circle, GamingHead} from './styledComponents'
+import {RowContainer, BodyContainer} from '../Home/styleComponents'
+import {TrendingBody, TrendingContainer} from '../Trending/styleComponents'
 
 const apiConstants = {
   initial: 'INITIAL',
@@ -31,7 +25,7 @@ const apiConstants = {
 }
 
 class Gaming extends Component {
-  state = {gamesList: [], apiStatus: apiConstants.initial}
+  state = {gamesList: [], apiStatus: apiConstants.inProgress}
 
   componentDidMount() {
     this.getVideos()
@@ -108,23 +102,23 @@ class Gaming extends Component {
           const {isDark} = value
 
           return (
-            <GameContainer>
+            <TrendingContainer isDark={isDark} data-testid="trending">
               <Header />
-              <div className="body-container">
-                <div>
-                  <LeftNav />
-                </div>
-                <ColumDiv>
+              <RowContainer>
+                <LeftNav />
+                <BodyContainer>
                   <Game isDark={isDark}>
-                    <IconContainer>
+                    <Circle>
                       <SiYoutubegaming />
-                    </IconContainer>
+                    </Circle>
                     <GamingHead isDark={isDark}>Gaming</GamingHead>
                   </Game>
-                  <GamingBody isDark={isDark}>{this.renderGames()}</GamingBody>
-                </ColumDiv>
-              </div>
-            </GameContainer>
+                  <TrendingBody isDark={isDark} className="body">
+                    {this.renderGames()}
+                  </TrendingBody>
+                </BodyContainer>
+              </RowContainer>
+            </TrendingContainer>
           )
         }}
       </NxtContext.Consumer>

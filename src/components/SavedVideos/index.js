@@ -1,11 +1,12 @@
 import Header from '../Header'
 import LeftNav from '../LeftNavbar'
 
-import NoSaved from '../NoSaved'
-
 import {SavedCon} from './styleComponents'
 import NxtContext from '../../context/NxtContext'
-import TrendingItem from '../TrendingItem'
+import {RowContainer} from '../Home/styleComponents'
+import {LeftNavContainer} from '../LeftNavbar/styleComponents'
+import SavedItem from '../SavedItem'
+import NoSaved from '../NoSaved'
 
 const SavedVideos = () => {
   const renderSavedItems = savedList => (
@@ -16,7 +17,7 @@ const SavedVideos = () => {
         <>
           <h1>Saved Videos</h1>
           {savedList.map(each => (
-            <TrendingItem key={each.id} trendingItem={each} />
+            <SavedItem key={each.id} saveItem={each} />
           ))}
         </>
       )}
@@ -28,14 +29,15 @@ const SavedVideos = () => {
         const {savedList, isDark} = value
 
         return (
-          <div>
+          <div data-testid="savedVideos">
             <Header />
-            <div className="row">
-              <div className="left">
+            <RowContainer>
+              <LeftNavContainer>
                 <LeftNav />
-              </div>
+              </LeftNavContainer>
+
               <SavedCon isDark={isDark}>{renderSavedItems(savedList)}</SavedCon>
-            </div>
+            </RowContainer>
           </div>
         )
       }}

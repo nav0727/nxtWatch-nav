@@ -1,4 +1,4 @@
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import {FaMoon} from 'react-icons/fa'
 import {TiWeatherSunny} from 'react-icons/ti'
@@ -37,14 +37,25 @@ const Header = props => {
         }
 
         return (
-          <HeadContainer isDark={isDark}>
-            <NxtWatch
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-              alt="nxt watch"
-            />
+          <HeadContainer isDark={isDark} data-testid="banner">
+            <Link to="/" style={{textDecoration: 'none'}}>
+              <NxtWatch
+                src={
+                  isDark
+                    ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                    : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                }
+                alt="nxt watch"
+              />
+            </Link>
 
             <HeaderItemsContainer>
-              <ButtonBg type="button" isDark={isDark} onClick={changeTheme}>
+              <ButtonBg
+                type="button"
+                isDark={isDark}
+                onClick={changeTheme}
+                data-testid="theme"
+              >
                 {isDark ? <FaMoon /> : <TiWeatherSunny />}
               </ButtonBg>
 

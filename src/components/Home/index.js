@@ -32,7 +32,7 @@ class Home extends Component {
     const {hide, isDark} = this.state
     console.log(isDark)
     return (
-      <HomeContainer>
+      <HomeContainer data-testid="home">
         <Header toggleTheme={this.toggleTheme} />
         <RowContainer>
           <div>
@@ -42,12 +42,16 @@ class Home extends Component {
           <BodyContainer>
             <HomeWallPaper hide={hide}>
               <>
-                <RowJust>
+                <RowJust data-testid="close">
                   <NxtImg
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                    alt="nxt watch"
+                    alt="nxt watch logo"
                   />
-                  <ButtonBg type="button" onClick={this.closeBtn}>
+                  <ButtonBg
+                    type="button"
+                    onClick={this.closeBtn}
+                    data-testid="close"
+                  >
                     <GrClose />
                   </ButtonBg>
                 </RowJust>

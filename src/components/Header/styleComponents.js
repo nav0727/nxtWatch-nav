@@ -4,8 +4,9 @@ export const HeadContainer = styled.nav`
   background-color: ${props => (props.isDark ? '#fff' : '#020202')};
   color: ${props => (props.isDark ? '#020202' : '#fff')};
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   height: 10vh;
+  justify-content: space-between;
   width: 100%;
 `
 export const HeaderItemsContainer = styled.div`
@@ -29,7 +30,6 @@ export const Logout = styled.button`
 export const NxtWatch = styled.img`
   height: 20px;
   margin-left: 3vw;
-  margin-top: 1vh;
 `
 export const Profile = styled.img`
   height: 30px;

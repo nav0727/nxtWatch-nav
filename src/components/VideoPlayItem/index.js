@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+// import {formatDistanceToNow} from 'date-fns'
+
 import ReactPlayer from 'react-player'
 
 import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
@@ -7,6 +9,18 @@ import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
 import {BiListPlus} from 'react-icons/bi'
 
 import NxtContext from '../../context/NxtContext'
+import {
+  RowOrder,
+  RowC,
+  CriLogo,
+  ColDir,
+  VideoItemCon,
+  LikedOrNot,
+  DisLiked,
+  IsSavedNot,
+} from './styleComponents'
+import {ButtonBg} from '../Header/styleComponents'
+import {RowJust} from '../Home/styleComponents'
 
 class VideosPlayItem extends Component {
   state = {isLiked: false, isDisliked: false, isSaved: false}
@@ -56,8 +70,13 @@ class VideosPlayItem extends Component {
             removeSaveItem(id)
           }
 
+          /* const publish = () => {
+            const published = formatDistanceToNow(new Date(publishedAt))
+            return published
+          } */
+
           return (
-            <div className="video-margin">
+            <VideoItemCon>
               <ReactPlayer
                 url={videoUrl}
                 controls="controls"
@@ -68,95 +87,71 @@ class VideosPlayItem extends Component {
                 type="video/mp4"
               />
               <p>{title}</p>
-              <div className="row-order" id={id}>
-                <div className="row">
-                  <p>{viewCount} views</p>
-                  <p>. {publishedAt} ago</p>
-                </div>
-                <div className="row">
-                  <div className="row">
-                    <button
+              <RowOrder id={id}>
+                <RowJust>
+                  <p>{viewCount} views </p>
+                  <p> published on {publishedAt} </p>
+                </RowJust>
+                <RowC>
+                  <RowC>
+                    <ButtonBg
                       type="button"
-                      className="btn-icon"
                       onClick={this.onLiked}
                       value={isLiked}
                     >
-                      <AiOutlineLike className={isLiked ? 'liked' : 'symbol'} />
-                    </button>
-                    <p
-                      onClick={this.onLiked}
-                      className={isLiked ? 'like-text' : 'not-like'}
-                    >
+                      <LikedOrNot isLiked={isLiked}>
+                        <AiOutlineLike />
+                      </LikedOrNot>
+                    </ButtonBg>
+                    <LikedOrNot isLiked={isLiked} onClick={this.onLiked}>
                       Like
-                    </p>
-                  </div>
-                  <div className="row">
-                    <button
+                    </LikedOrNot>
+                  </RowC>
+                  <RowC>
+                    <ButtonBg
                       type="button"
                       className="btn-icon"
                       onClick={this.onDisLiked}
                       value={isDisliked}
                     >
-                      <AiOutlineDislike
-                        className={isDisliked ? 'liked' : 'symbol'}
-                      />
-                    </button>
+                      <DisLiked isDisliked={isDisliked}>
+                        <AiOutlineDislike />
+                      </DisLiked>
+                    </ButtonBg>
 
-                    <p
-                      onClick={this.onDisLiked}
-                      className={isDisliked ? 'like-text' : 'not-like'}
-                    >
+                    <DisLiked isDisliked={isDisliked} onClick={this.onDisLiked}>
                       Dislike
-                    </p>
-                  </div>
-                  <div className="row">
-                    {isSaved ? (
-                      <>
-                        <button
-                          type="button"
-                          className="btn-icon"
-                          onClick={onRemove}
-                        >
-                          <BiListPlus
-                            className={isSaved ? 'liked' : 'symbol'}
-                          />
-                        </button>
-                        <p className={isSaved ? 'like-text' : 'not-like'}>
-                          Saved
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          type="button"
-                          className="btn-icon"
-                          onClick={onSave}
-                        >
-                          <BiListPlus
-                            className={isSaved ? 'liked' : 'symbol'}
-                          />
-                        </button>
-                        <p className={isSaved ? 'like-text' : 'not-like'}>
-                          Save
-                        </p>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
+                    </DisLiked>
+                  </RowC>
+                  <RowC>
+                    <ButtonBg
+                      type="button"
+                      className="btn-icon"
+                      onClick={isSaved ? onRemove : onSave}
+                    >
+                      <IsSavedNot isSaved={isSaved}>
+                        <BiListPlus />
+                      </IsSavedNot>
+                    </ButtonBg>
+                    <IsSavedNot isSaved={isSaved}>
+                      {isSaved ? 'Saved' : 'Save'}
+                    </IsSavedNot>
+                  </RowC>
+                </RowC>
+              </RowOrder>
               <hr />
-              <div className="row">
-                <img src={profileImageUrl} alt="profile" className="cri-logo" />
-                <div className="col">
+              <RowC>
+                <CriLogo src={profileImageUrl} alt="profile" />
+                <ColDir>
                   <div>
                     <p>{name}</p>
                     <p>{subscriberCount} subscribers</p>
                   </div>
 
                   <p>{description}</p>
-                </div>
-              </div>
-            </div>
+                </ColDir>
+              </RowC>
+            </VideoItemCon>
           )
         }}
       </NxtContext.Consumer>

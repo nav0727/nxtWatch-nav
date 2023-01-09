@@ -27,7 +27,7 @@ const apiConstants = {
 class Videos extends Component {
   state = {
     videosList: [],
-    apiStatus: apiConstants.initial,
+    apiStatus: apiConstants.inProgress,
     searchInput: '',
     searchIp: '',
   }
@@ -131,7 +131,11 @@ class Videos extends Component {
                   placeholder="Search"
                   onChange={this.onChangeSearch}
                 />
-                <button type="button" onClick={this.onSearchInput}>
+                <button
+                  type="button"
+                  onClick={this.onSearchInput}
+                  data-testid="searchButton"
+                >
                   <BiSearch className="search-icon" />
                 </button>
               </SearchContainer>

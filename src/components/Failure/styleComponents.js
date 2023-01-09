@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components'
 
 export const FailureContainer = styled.div`
@@ -13,14 +12,7 @@ export const FailureContainer = styled.div`
   
   }
 `
-/*
-
-
-.failure-image {
-  display: flex;
-  flex-direction: column;
-}
-
-
-
-*/
+export const FailureImage = styled.img`
+  height: 200px;
+  width: 250px;
+`
