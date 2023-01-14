@@ -28,10 +28,10 @@ class Gaming extends Component {
   state = {gamesList: [], apiStatus: apiConstants.inProgress}
 
   componentDidMount() {
-    this.getVideos()
+    this.getGames()
   }
 
-  getVideos = async () => {
+  getGames = async () => {
     const JWTToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/videos/gaming`
 

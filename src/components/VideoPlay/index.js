@@ -41,7 +41,7 @@ class VideoPlay extends Component {
     if (response.ok === true) {
       const updateData = await response.json()
 
-      const videoItemList = {
+      const videoItemList = await {
         id: updateData.video_details.id,
         title: updateData.video_details.title,
         videoUrl: updateData.video_details.video_url,
@@ -49,7 +49,6 @@ class VideoPlay extends Component {
         name: updateData.video_details.channel.name,
         profileImageUrl: updateData.video_details.channel.profile_image_url,
         subscriberCount: updateData.video_details.channel.subscriber_count,
-
         viewCount: updateData.video_details.view_count,
         publishedAt: updateData.video_details.published_at,
         description: updateData.video_details.description,

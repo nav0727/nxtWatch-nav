@@ -17,7 +17,7 @@ class VideoItem extends Component {
     const {
       id,
       title,
-      thumbNailUrl,
+      thumbnailUrl,
       publishedAt,
       name,
       profileImageUrl,
@@ -35,7 +35,7 @@ class VideoItem extends Component {
             <Link to={`/videos/${id}`} style={{textDecoration: 'none'}}>
               <VideoListContainer>
                 <div>
-                  <ThumbImage src={thumbNailUrl} alt="video thumbnail" />
+                  <ThumbImage src={thumbnailUrl} alt="video thumbnail" />
                   <div>
                     <Profile src={profileImageUrl} alt="channel logo" />
                     <div>

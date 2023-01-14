@@ -66,10 +66,10 @@ class Videos extends Component {
       const data = await response.json()
 
       // console.log(data)
-      const updateVideos = data.videos.map(each => ({
+      const updateVideos = await data.videos.map(each => ({
         id: each.id,
         title: each.title,
-        thumbNailUrl: each.thumbnail_url,
+        thumbnailUrl: each.thumbnail_url,
         name: each.channel.name,
         profileImageUrl: each.channel.profile_image_url,
         viewCount: each.view_count,

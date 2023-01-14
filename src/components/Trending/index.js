@@ -28,10 +28,10 @@ class Trending extends Component {
   state = {trendingList: [], apiStatus: apiConstants.inProgress}
 
   componentDidMount() {
-    this.getVideos()
+    this.getTrends()
   }
 
-  getVideos = async () => {
+  getTrends = async () => {
     const JWTToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/videos/trending`
 
@@ -56,7 +56,7 @@ class Trending extends Component {
       // console.log(updateVideos)
       this.setState(
         {trendingList: updateVideos, apiStatus: apiConstants.success},
-        this.getVideos,
+        this.getTrends,
       )
     } else {
       this.setState({apiStatus: apiConstants.failure})

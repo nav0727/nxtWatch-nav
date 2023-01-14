@@ -11,8 +11,9 @@ import LoginForm from './components/LoginForm'
 import VideoPlay from './components/VideoPlay'
 import ProtectedRoute from './components/ProtectedRoute'
 
-import './App.css'
 import NxtContext from './context/NxtContext'
+
+import './App.css'
 
 class App extends Component {
   state = {isDark: true, savedList: []}
@@ -41,16 +42,16 @@ class App extends Component {
     const {isDark, savedList} = this.state
     console.log(isDark)
     return (
-      <BrowserRouter>
-        <NxtContext.Provider
-          value={{
-            isDark,
-            toggleTheme: this.toggleTheme,
-            addSavedItem: this.addSavedItem,
-            removeSaveItem: this.removeSaveItem,
-            savedList,
-          }}
-        >
+      <NxtContext.Provider
+        value={{
+          isDark,
+          toggleTheme: this.toggleTheme,
+          addSavedItem: this.addSavedItem,
+          removeSaveItem: this.removeSaveItem,
+          savedList,
+        }}
+      >
+        <BrowserRouter>
           <Switch>
             <Route exact path="/login" component={LoginForm} />
             <ProtectedRoute exact path="/" component={Home} />
@@ -65,8 +66,8 @@ class App extends Component {
             <ProtectedRoute path="/not-found" component={NotFound} />
             <Redirect to="/not-found" />
           </Switch>
-        </NxtContext.Provider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </NxtContext.Provider>
     )
   }
 }
